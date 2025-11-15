@@ -1,0 +1,14 @@
+.app {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+  margin-bottom: 12px;
+}
+
+p {
+  color: #444;
+}
