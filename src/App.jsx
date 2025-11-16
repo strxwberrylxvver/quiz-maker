@@ -8,6 +8,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [quizText, setQuizText] = useState("");
   const [error, setError] = useState("");
+  const [userAnswers, setUserAnswers] = useState([]);
 
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,6 +29,12 @@ export default function App() {
       const answer = answerLine?.split(":")[1]?.trim();
       return { question, options, answer };
     });
+  };
+
+  const renderAnswerText = (q, letter) => {
+    if (!letter) return "No answer";
+    const idx = letter.charCodeAt(0) - 65;
+    return q.options[idx] ? `${letter}. ${q.options[idx]}` : letter;
   };
 
   // Generate quiz from AI
@@ -86,6 +93,10 @@ Format as plain text:
 
   // Handle answer selection
   const handleNext = () => {
+    const updated = [...userAnswers];
+    updated[currentIndex] = selectedAnswer;
+    setUserAnswers(updated);
+
     if (selectedAnswer === questions[currentIndex].answer) {
       setScore((s) => s + 1);
     }
@@ -172,11 +183,37 @@ Format as plain text:
           <p>
             Your Score: {score} / {questions.length}
           </p>
+
+          <h3>Review Answers:</h3>
+          {questions.map((q, i) => (
+            <div key={i} className="result-item">
+              <p>
+                <strong>Q{i + 1}:</strong> {q.question}
+              </p>
+              <p>
+                <strong>Your answer:</strong>{" "}
+                <span
+                  style={{
+                    color: userAnswers[i] === q.answer ? "green" : "red",
+                  }}
+                >
+                  {renderAnswerText(q, userAnswers[i])}
+                </span>
+              </p>
+              <p>
+                <strong>Correct answer:</strong> {renderAnswerText(q, q.answer)}
+              </p>
+              <hr />
+            </div>
+          ))}
+
           <button
             onClick={() => {
               setQuestions([]);
               setFinished(false);
               setQuizText("");
+              setUserAnswers([]);
+              setScore(0);
             }}
           >
             Start New Quiz
