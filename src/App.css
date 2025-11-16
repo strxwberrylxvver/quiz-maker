@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  justify-content: center; 
+  align-items: center; 
 }
 
 h1, h2 {
@@ -71,6 +73,7 @@ button.selected {
   border-color: #ff7cd4;
   box-shadow: 4px 4px 0 #ff7cd4;
 }
+
 
 .quiz-output, .quiz-question, .quiz-finished {
   margin-top: 16px;
