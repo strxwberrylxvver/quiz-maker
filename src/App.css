@@ -23,6 +23,7 @@ button {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  margin-top: 8px;
 }
 
 button:disabled {
@@ -30,20 +31,13 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.quiz-output {
+button.selected {
+  background: #ff9800;
+}
+
+.quiz-output, .quiz-question, .quiz-finished {
   margin-top: 16px;
   padding: 12px;
   background: #f5f5f5;
   border-radius: 8px;
-}
-.question-card {
-  background: #f0f4ff;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
-
-.error {
-  color: red;
 }
