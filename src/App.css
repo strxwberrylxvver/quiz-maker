@@ -36,6 +36,13 @@ button:disabled {
   background: #f5f5f5;
   border-radius: 8px;
 }
+.question-card {
+  background: #f0f4ff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
 
 .error {
   color: red;

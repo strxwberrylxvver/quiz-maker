@@ -89,8 +89,13 @@ Make questions clear and concise.
       </button>
 
       <div className="quiz-output">
-        <pre>{quizText || "Your quiz will appear here."}</pre>
-      </div>
+  {quizText.split("\n\n").map((q, i) => (
+    <div key={i} className="question-card">
+      <pre>{q}</pre>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }
